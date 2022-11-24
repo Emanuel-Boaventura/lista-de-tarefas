@@ -2,7 +2,7 @@
   background-color: var(--gray500);
   width: -webkit-fill-available;
   border-radius: 8px;
-  border: 1px solid var(--gray400);
+  box-shadow: 0.1rem 0.1rem var(--gray400);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -12,7 +12,7 @@
   &.completed {
     text-decoration: line-through;
     color: var(--gray300);
-    border: none;
+    opacity: 0.6;
 
     .trashIcon {
       color: var(--maindanger);

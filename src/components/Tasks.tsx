@@ -6,20 +6,29 @@ import { Task } from './TodoList';
 interface TasksProps {
   taskData: Task;
   onDeleteTask: (id: string) => void;
-  onMarkAsCompleteTask: (id: string) => void;
+  onComplete: (id: string) => void;
 }
 
 const Tasks = ({
   taskData,
   onDeleteTask,
-  onMarkAsCompleteTask,
+  onComplete,
 }: TasksProps) => {
   function handleDeleteTask() {
     onDeleteTask(taskData._id);
   }
+
+  function handleSetAsMarked() {
+    onComplete(taskData._id);
+  }
+
   return (
     <div className={`${styles.task} ${taskData.completed && styles.completed}`}>
-      <button type='button' className={styles.checkIcon}>
+      <button
+        onClick={handleSetAsMarked}
+        type='button'
+        className={styles.checkIcon}
+      >
         {taskData.completed ? (
           <CheckCircle weight='fill' size={24} />
         ) : (

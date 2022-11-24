@@ -46,7 +46,7 @@
       }
 
       &:disabled {
-        background-color: var(--gray300);
+        background-color: var(--mainbluedarkgrayed);
         cursor: default;
       }
     }
@@ -89,9 +89,8 @@
 
   .taskContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 0.75rem;
     width: 100%;
   }
-  
 }

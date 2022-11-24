@@ -1,5 +1,5 @@
-import { PlusCircle } from 'phosphor-react';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { PlusCircle, ClipboardText } from 'phosphor-react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import Tasks from './Tasks';
 
@@ -12,20 +12,29 @@ export interface Task {
 }
 
 const TodoList = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      _id: uuid(),
-      content: 'Primeira Task',
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState('');
 
-  const isNewTaskEmpty = newTask.length === 0;
+  const completedTasksNumber = tasks.reduce(
+    (accumulator: number, task: Task) => {
+      if (task.completed) return accumulator + 1;
+      return accumulator;
+    },
+    0
+  );
 
-  function markAsCompleteTask() {
-    console.log('Completei essa');
+  function onComplete(id: string) {
+    setTasks((state) =>
+      state.map((task) => {
+        if (task._id === id) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      })
+    );
   }
+
+  const isNewTaskEmpty = newTask.length === 0;
 
   function deleteTask(taskToDelete: string) {
     const taskWithoutDeletedOne = tasks.filter(({ _id }) => {
@@ -38,7 +47,7 @@ const TodoList = () => {
   function handleNewTask(e: FormEvent) {
     e.preventDefault();
 
-    setTasks([...tasks, { _id: uuid(), content: newTask, completed: true }]);
+    setTasks([...tasks, { _id: uuid(), content: newTask, completed: false }]);
     setNewTask('');
   }
 
@@ -68,19 +77,31 @@ const TodoList = () => {
         <p className={styles.completedTasks}>
           Concluidas{' '}
           <span className={styles.completedTasksNumber}>
-            {} de {tasks.length}
+            {completedTasksNumber} de {tasks.length}
           </span>
         </p>
       </header>
       <main className={styles.taskContainer}>
-        {tasks.map((task) => (
-          <Tasks
-            key={task._id}
-            taskData={task}
-            onDeleteTask={deleteTask}
-            onMarkAsCompleteTask={markAsCompleteTask}
-          />
-        ))}
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <Tasks
+              key={task._id}
+              taskData={task}
+              onDeleteTask={deleteTask}
+              onComplete={onComplete}
+            />
+          ))
+        ) : (
+          <div className={styles.noTasks}>
+            <ClipboardText size={56} />
+            <p className={styles.msgOne}>
+              Você ainda não tem tarefas cadastradas
+            </p>
+            <p className={styles.msgTwo}>
+              Crie tarefas e organize seus itens a fazer
+            </p>
+          </div>
+        )}
       </main>
     </div>
   );
