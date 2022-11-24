@@ -1,4 +1,4 @@
-import { Circle, Trash, CheckCircle } from 'phosphor-react';
+import Tasks from './Tasks';
 
 import styles from './TodoList.module.scss';
 
@@ -17,31 +17,8 @@ const TodoList = () => {
         </p>
       </header>
       <main className={styles.taskContainer}>
-        <div className={styles.task}>
-          <Circle className={styles.checkIcon} size={24} />
-          {content}
-          <Trash className={styles.trashIcon} size={24} />
-        </div>
-        <div className={styles.task}>
-          <Circle className={styles.checkIcon} size={24} />
-          {content}
-          <Trash className={styles.trashIcon} size={24} />
-        </div>
-        <div className={styles.task}>
-          <Circle className={styles.checkIcon} size={24} />
-          {content}
-          <Trash className={styles.trashIcon} size={24} />
-        </div>
-        <div className={styles.task}>
-          <Circle className={styles.checkIcon} size={24} />
-          {content}
-          <Trash className={styles.trashIcon} size={24} />
-        </div>
-        <div className={styles.taskCompleted}>
-          <CheckCircle weight='fill' className={styles.checkIcon} size={24} />
-          {content}
-          <Trash className={styles.trashIcon} size={24} />
-        </div>
+        <Tasks content={content} />
+        <Tasks content={content} completed={true} />
       </main>
     </div>
   );
