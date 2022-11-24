@@ -12,9 +12,7 @@ const Header = () => {
         </h1>
       </div>
       <form>
-        <label htmlFor=''>
           <input placeholder='Adicione uma nova tarefa' type='text' />
-        </label>
         <button type='submit'>
           Criar
           <PlusCircle size={16} />
