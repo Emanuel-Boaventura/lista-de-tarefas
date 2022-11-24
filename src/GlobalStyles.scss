@@ -17,10 +17,22 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border--box;
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--gray600);
-  font-family: 'Inter', sans--serif;
+  font-family: 'Inter', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 1rem;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--gray500);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--gray300);
 }

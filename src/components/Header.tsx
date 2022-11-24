@@ -1,8 +1,8 @@
 import RocketLogo from '../assets/rocket-logo.svg';
 import styles from './Header.module.scss';
-import { PlusCircle } from 'phosphor-react';
 
 const Header = () => {
+
   return (
     <div className={styles.header}>
       <div className={styles.pageLogo}>
@@ -11,13 +11,6 @@ const Header = () => {
           Lista de <span>Tarefas</span>
         </h1>
       </div>
-      <form>
-          <input placeholder='Adicione uma nova tarefa' type='text' />
-        <button type='submit'>
-          Criar
-          <PlusCircle size={16} />
-        </button>
-      </form>
     </div>
   );
 };

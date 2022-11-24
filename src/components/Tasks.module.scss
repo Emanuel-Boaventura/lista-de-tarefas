@@ -4,10 +4,14 @@
   border-radius: 8px;
   border: 1px solid var(--gray400);
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   gap: 0.75rem;
   padding: 1rem;
   color: var(--gray100);
+
+  .taskContent {
+    max-width: 85%;
+  }
 
   .checkIcon {
     cursor: pointer;
@@ -23,9 +27,9 @@
   .trashIcon {
     cursor: pointer;
     color: var(--gray300);
-    padding: 0.25rem;
     border-radius: 8px;
-    transform: translate(0.25rem, -0.25rem);
+    padding: 0.25rem;
+    margin-left: auto;
 
     &:hover {
       background-color: var(--gray400);

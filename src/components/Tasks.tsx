@@ -4,15 +4,22 @@ import styles from './Tasks.module.scss';
 
 interface TasksProps {
   completed?: boolean;
-  content: string;
+  taskContent: string;
+  onDeleteTask: (id: string) => void;
+  onMarkAsCompleteTask: (id: string) => void;
 }
 
-const Tasks = ({ completed, content }: TasksProps) => {
+const Tasks = ({
+  completed,
+  taskContent,
+  onDeleteTask,
+  onMarkAsCompleteTask,
+}: TasksProps) => {
   if (completed) {
     return (
       <div className={styles.taskCompleted}>
         <CheckCircle weight='fill' className={styles.checkIcon} size={24} />
-        {content}
+        {taskContent}
         <Trash className={styles.trashIcon} size={24} />
       </div>
     );
@@ -20,8 +27,8 @@ const Tasks = ({ completed, content }: TasksProps) => {
     return (
       <div className={styles.task}>
         <Circle className={styles.checkIcon} size={24} />
-        {content}
-        <Trash className={styles.trashIcon} size={24} />
+        <p className={styles.taskContent}>{taskContent}</p>
+        <Trash className={styles.trashIcon} size={32} />
       </div>
     );
   }
