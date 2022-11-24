@@ -1,37 +1,43 @@
 import { Circle, Trash, CheckCircle } from 'phosphor-react';
 
 import styles from './Tasks.module.scss';
+import { Task } from './TodoList';
 
 interface TasksProps {
-  completed?: boolean;
-  taskContent: string;
+  taskData: Task;
   onDeleteTask: (id: string) => void;
   onMarkAsCompleteTask: (id: string) => void;
 }
 
 const Tasks = ({
-  completed,
-  taskContent,
+  taskData,
   onDeleteTask,
   onMarkAsCompleteTask,
 }: TasksProps) => {
-  if (completed) {
-    return (
-      <div className={styles.taskCompleted}>
-        <CheckCircle weight='fill' className={styles.checkIcon} size={24} />
-        {taskContent}
-        <Trash className={styles.trashIcon} size={24} />
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.task}>
-        <Circle className={styles.checkIcon} size={24} />
-        <p className={styles.taskContent}>{taskContent}</p>
-        <Trash className={styles.trashIcon} size={32} />
-      </div>
-    );
+  function handleDeleteTask() {
+    onDeleteTask(taskData._id);
   }
+  return (
+    <div className={`${styles.task} ${taskData.completed && styles.completed}`}>
+      <button type='button' className={styles.checkIcon}>
+        {taskData.completed ? (
+          <CheckCircle weight='fill' size={24} />
+        ) : (
+          <Circle size={24} />
+        )}
+      </button>
+
+      <p className={styles.taskContent}>{taskData.content}</p>
+
+      <button
+        type='button'
+        onClick={handleDeleteTask}
+        className={styles.trashIcon}
+      >
+        <Trash size={24} />
+      </button>
+    </div>
+  );
 };
 
 export default Tasks;

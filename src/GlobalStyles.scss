@@ -36,3 +36,11 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: var(--gray300);
 }
+
+button {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  appearance: none;
+}

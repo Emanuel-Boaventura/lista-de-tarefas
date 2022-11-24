@@ -9,6 +9,16 @@
   padding: 1rem;
   color: var(--gray100);
 
+  &.completed {
+    text-decoration: line-through;
+    color: var(--gray300);
+    border: none;
+
+    .trashIcon {
+      color: var(--maindanger);
+    }
+  }
+
   .taskContent {
     max-width: 85%;
   }
@@ -28,44 +38,8 @@
     cursor: pointer;
     color: var(--gray300);
     border-radius: 8px;
-    padding: 0.25rem;
     margin-left: auto;
-
-    &:hover {
-      background-color: var(--gray400);
-      color: var(--maindanger);
-    }
-  }
-}
-
-.taskCompleted {
-  background-color: var(--gray500);
-  width: -webkit-fill-available;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 1rem;
-  color: var(--gray300);
-  text-decoration: line-through;
-
-  .checkIcon {
-    cursor: pointer;
-    color: var(--mainpurpledark);
-    height: 24px;
-    transition: color 0.1s;
-
-    &:hover {
-      color: var(--mainpurple);
-    }
-  }
-
-  .trashIcon {
-    cursor: pointer;
-    color: var(--gray300);
-    padding: 0.25rem;
-    border-radius: 8px;
-    transform: translate(0.25rem, -0.25rem);
+    padding: 6px;
 
     &:hover {
       background-color: var(--gray400);

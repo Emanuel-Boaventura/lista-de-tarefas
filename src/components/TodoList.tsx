@@ -5,11 +5,18 @@ import Tasks from './Tasks';
 
 import styles from './TodoList.module.scss';
 
+export interface Task {
+  _id: string;
+  content: string;
+  completed: boolean;
+}
+
 const TodoList = () => {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<Task[]>([
     {
-      taskID: uuid(),
-      taskContent: 'PrimeiraTask',
+      _id: uuid(),
+      content: 'Primeira Task',
+      completed: false,
     },
   ]);
   const [newTask, setNewTask] = useState('');
@@ -20,14 +27,18 @@ const TodoList = () => {
     console.log('Completei essa');
   }
 
-  function deleteTask() {
-    console.log('Deleta essa');
+  function deleteTask(taskToDelete: string) {
+    const taskWithoutDeletedOne = tasks.filter(({ _id }) => {
+      return _id !== taskToDelete;
+    });
+
+    setTasks(taskWithoutDeletedOne);
   }
 
   function handleNewTask(e: FormEvent) {
     e.preventDefault();
 
-    setTasks([...tasks, { taskID: uuid(), taskContent: newTask }]);
+    setTasks([...tasks, { _id: uuid(), content: newTask, completed: true }]);
     setNewTask('');
   }
 
@@ -62,16 +73,14 @@ const TodoList = () => {
         </p>
       </header>
       <main className={styles.taskContainer}>
-        {tasks.map(({ taskContent, taskID }) => {
-          return (
-            <Tasks
-              key={taskID}
-              taskContent={taskContent}
-              onDeleteTask={deleteTask}
-              onMarkAsCompleteTask={markAsCompleteTask}
-            />
-          );
-        })}
+        {tasks.map((task) => (
+          <Tasks
+            key={task._id}
+            taskData={task}
+            onDeleteTask={deleteTask}
+            onMarkAsCompleteTask={markAsCompleteTask}
+          />
+        ))}
       </main>
     </div>
   );
