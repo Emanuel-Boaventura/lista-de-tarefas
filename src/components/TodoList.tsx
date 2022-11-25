@@ -55,6 +55,23 @@ const TodoList = () => {
     setNewTask(e.target.value);
   }
 
+  function renderTasks() {
+    const array = [];
+
+    for (let i = tasks.length - 1; i >= 0; i--) {
+      array.push(
+        <Tasks
+          key={tasks[i]._id}
+          taskData={tasks[i]}
+          onDeleteTask={deleteTask}
+          onComplete={onComplete}
+        />
+      );
+    }
+    
+    return array;
+  }
+
   return (
     <div className={styles.content}>
       <form onSubmit={handleNewTask}>
@@ -83,14 +100,7 @@ const TodoList = () => {
       </header>
       <main className={styles.taskContainer}>
         {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <Tasks
-              key={task._id}
-              taskData={task}
-              onDeleteTask={deleteTask}
-              onComplete={onComplete}
-            />
-          ))
+          <>{renderTasks()}</>
         ) : (
           <div className={styles.noTasks}>
             <ClipboardText size={56} />

@@ -28,6 +28,7 @@
     color: var(--mainblue);
     height: 24px;
     transition: color 0.1s;
+    border-radius: 100%;
 
     &:hover {
       color: var(--mainbluedark);

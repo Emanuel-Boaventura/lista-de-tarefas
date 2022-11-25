@@ -89,8 +89,21 @@
 
   .taskContainer {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 0.75rem;
     width: 100%;
+
+    .noTasks {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: var(--gray300);
+      gap: 0.5rem;
+
+      .msgOne {
+        font-weight: bolder;
+      }
+    }
   }
 }
